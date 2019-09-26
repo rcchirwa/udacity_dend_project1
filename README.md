@@ -4,7 +4,7 @@ The first Udacity DEND project
 
 We have a Star Scheme that is used for analytical purposes. The central table is the fact table which is **songplays**. The other tables are the dimension tables users, songs, artists, time and al. 
 
-### songplays
+### Songplays
 songplays could be viewed as a fact table from a data warehousing perspective. It contains information from the song play perspective i.e. it has the time the song
 * **start_time** - time the song started playing
 * **user_id** - use who played the song which is also a key to the user dimension table Level - the level of the membership 

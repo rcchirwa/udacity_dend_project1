@@ -7,11 +7,17 @@ We have a Star Scheme that is used for analytical purposes. The central table is
 **songplays** -  table could be viewed as a fact table from a data warehousing perspective. It contains information from the song play perspective i.e. it has the time the song
 
 **start_time** - time the song started playing
+
 **user_id** - use who played the song which is also a key to the user dimension table Level - the level of the membership 
+
 **song_id** - id associated with the song played which also is a key to the song id table 
+
 **artist_id** - id associated with the artist performing a song also a key to the artist table
+
 **session_id** - session id associated with a session
+
 **location** - this is the location where the song was played 
+
 **user_agent** - information about the software user agent that was used by the artist 
 
 

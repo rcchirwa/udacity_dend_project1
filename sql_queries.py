@@ -10,55 +10,54 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 songplay_table_create = ('''
 CREATE TABLE IF NOT EXISTS songplays(
-	songplay_id 	SERIAL PRIMARY KEY,
-	start_time 		bigint,
-	user_id 		bigint,
-	level 			varchar(16),
-	song_id 		varchar(64),
-	artist_id 		varchar(64),
-	session_id 		int,
-	location 		varchar(265),
-	user_agent 		varchar(256));
+    songplay_id     SERIAL PRIMARY KEY NOT NULL,
+    start_time      bigint NOT NULL,
+    user_id         bigint NOT NULL,
+    level           varchar(16),
+    song_id         varchar(64),
+    artist_id       varchar(64),
+    session_id      int,
+    location        varchar(265),
+    user_agent      varchar(256));
 ''')
 
 user_table_create = ('''
 CREATE TABLE IF NOT EXISTS users(
-	user_id 	bigint PRIMARY KEY,
-	first_name 	varchar(256),
-	last_name 	varchar(256),
-	gender 		varchar(8),
-	level 		varchar(16));
-
+    user_id     bigint PRIMARY KEY NOT NULL,
+    first_name  varchar(256),
+    last_name   varchar(256),
+    gender      varchar(8),
+    level       varchar(16));
 ''')
 
 song_table_create = ('''
 CREATE TABLE IF NOT EXISTS songs(
-    song_id 	varchar(64),
-    title 		varchar(256),
-    artist_id 	varchar(64),
-    year 		int,
-    duration 	float8);
+    song_id     varchar(64) PRIMARY KEY NOT NULL,
+    title       varchar(256),
+    artist_id   varchar(64) NOT NULL,
+    year        int,
+    duration    float8);
 ''')
 
 artist_table_create = ('''
 CREATE TABLE IF NOT EXISTS artists
 (
-    artist_id 	varchar(64),
-    name 		varchar(256),
-    location 	varchar(256),
-    latitude 	float,
-    longitude 	float);
+    artist_id   varchar(64) PRIMARY KEY  NOT NULL,
+    name        varchar(256),
+    location    varchar(256),
+    latitude    float,
+    longitude   float);
 ''')
 
 time_table_create = ('''
 CREATE TABLE IF NOT EXISTS time(
-    start_time 	bigint,
-    hour 		int4,
-    day 		int4,
-    week 		int4,
-    month 		int4,
-    year 		int4,
-    weekday		int4);
+    start_time  bigint PRIMARY KEY NOT NULL,
+    hour        int4,
+    day         int4,
+    week        int4,
+    month       int4,
+    year        int4,
+    weekday     int4);
 ''')
 
 # INSERT RECORDS
@@ -88,6 +87,8 @@ artist_table_insert = ("""
 INSERT INTO artists 
 (artist_id, name, location, latitude, longitude)
 VALUES (%s, %s, %s, %s, %s)
+ON CONFLICT (artist_id) 
+DO NOTHING
 """)
 
 
@@ -95,6 +96,8 @@ time_table_insert = ("""
 INSERT INTO time
 (start_time, hour, day, week, month, year, weekday)
 VALUES (%s, %s, %s, %s, %s, %s, %s)
+ON CONFLICT (start_time) 
+DO NOTHING
 """)
 
 # FIND SONGS
